@@ -1,0 +1,33 @@
+### Lister tous les dossiers
+GET http://localhost:8081/api/dossiers
+
+### Créer un dossier de sinistre 1
+POST http://localhost:8081/api/dossiers
+Content-Type: application/json
+
+{
+  "nomVictime": "Kouassi Jean",
+  "dateAccident": "2026-07-01",
+  "lieu": "Abidjan - Cocody"
+}
+
+### Créer un dossier de sinistre 2
+POST http://localhost:8081/api/dossiers
+Content-Type: application/json
+
+{
+  "nomVictime": "Meite Kounadi",
+  "dateAccident": "2026-07-22",
+  "lieu": "Abidjan - Abobo"
+}
+
+### Créer un dossier de sinistre 3
+POST http://localhost:8081/api/dossiers
+Content-Type: application/json
+
+{
+  "nomVictime": "Diarrassouba Ibrahim",
+  "dateAccident": "2026-07-22",
+  "lieu": "Abidjan - Adjamé"
+}
+

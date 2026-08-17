@@ -1,0 +1,14 @@
+<header class="entete-app" *ngIf="estConnecte">
+  <div class="entete-contenu">
+    <div class="entete-marque">
+      <span class="entete-logo">FGA</span>
+      <h1>{{ title }}</h1>
+    </div>
+    <button type="button" class="bouton-deconnexion" (click)="seDeconnecter()">
+      Déconnexion
+    </button>
+  </div>
+  <div class="ruban-drapeau"></div>
+</header>
+
+<router-outlet></router-outlet>

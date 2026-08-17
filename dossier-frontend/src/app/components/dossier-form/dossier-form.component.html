@@ -1,0 +1,66 @@
+<div class="carte-formulaire">
+  <div class="entete-carte">
+    <h2>Créer un dossier de sinistre</h2>
+    <p class="sous-titre">Renseigne les informations de base pour ouvrir un nouveau dossier.</p>
+  </div>
+
+  <!-- (ngSubmit) : déclenché quand le formulaire est soumis (bouton
+       submit cliqué, ou touche Entrée). On appelle notre méthode
+       soumettre() définie dans le .ts. -->
+  <form (ngSubmit)="soumettre()" class="grille-champs">
+
+    <div class="champ">
+      <label for="nomVictime">Nom de la victime</label>
+      <!-- [(ngModel)] : la LIAISON BIDIRECTIONNELLE, un concept propre à
+           Angular (React ne fait pas ça nativement, par exemple).
+           Les crochets [ngModel] envoient la valeur TypeScript vers le
+           champ HTML ; les parenthèses (ngModelChange) renvoient la
+           saisie de l'utilisateur vers la variable TypeScript.
+           Combinées [( )], les deux sens sont synchronisés en permanence,
+           sans code supplémentaire à écrire. -->
+      <input
+        id="nomVictime"
+        type="text"
+        [(ngModel)]="nomVictime"
+        name="nomVictime"
+        placeholder="Ex : Jean Kouassi"
+        required
+      />
+    </div>
+
+    <div class="champ">
+      <label for="dateAccident">Date de l'accident</label>
+      <input
+        id="dateAccident"
+        type="date"
+        [(ngModel)]="dateAccident"
+        name="dateAccident"
+        required
+      />
+    </div>
+
+    <div class="champ champ-pleine-largeur">
+      <label for="lieu">Lieu</label>
+      <input
+        id="lieu"
+        type="text"
+        [(ngModel)]="lieu"
+        name="lieu"
+        placeholder="Ex : Abidjan, Cocody"
+      />
+    </div>
+
+    <app-banniere type="erreur" [message]="messageErreur" class="champ-pleine-largeur"></app-banniere>
+    <app-banniere type="succes" [message]="messageSucces" class="champ-pleine-largeur"></app-banniere>
+
+    <!-- [disabled] : désactive le bouton pendant l'envoi, pour éviter
+         qu'un double-clic crée deux dossiers identiques par erreur. -->
+    <button type="submit" class="bouton-primaire champ-pleine-largeur" [disabled]="envoiEnCours">
+      <span *ngIf="envoiEnCours" class="spinner"></span>
+      <svg *ngIf="!envoiEnCours" class="icone-plus" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+      </svg>
+      {{ envoiEnCours ? 'Création en cours...' : 'Créer le dossier' }}
+    </button>
+  </form>
+</div>

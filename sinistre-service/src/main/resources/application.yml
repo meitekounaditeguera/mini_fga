@@ -1,0 +1,45 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: sinistre-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/sinistre_db
+    username: sinistre_user
+    password: sinistre_pwd
+
+  jpa:
+    hibernate:
+      # update : pratique en entrainement pour laisser Hibernate créer les tables.
+      # En vrai projet d'entreprise, on utilise plutôt Flyway/Liquibase (migrations versionnées).
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  kafka:
+    # L'adresse du "broker" Kafka (le serveur Kafka lui-même). C'est le
+    # conteneur sinistre-kafka du docker-compose, accessible sur le port 9092.
+    bootstrap-servers: localhost:9092
+    producer:
+      # Comment convertir nos objets Java en messages Kafka.
+      # StringSerializer pour la clé, JsonSerializer pour la valeur
+      # (Spring Kafka va convertir automatiquement notre événement en JSON).
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+# Nom du topic, dans une propriété à nous (pas une propriété Spring standard),
+# pour ne pas coder ce nom "en dur" dans le code Java.
+fga:
+  kafka:
+    topic-dossier-cree: dossier-cree
+  jwt:
+    # IMPORTANT : ce secret doit être EXACTEMENT le même dans les 3
+    # microservices (sinistre, indemnisation, recouvrement) - c'est lui qui
+    # permet à indemnisation-service et recouvrement-service de vérifier un
+    # token émis ici, sans jamais s'appeler entre eux.
+    secret: fga-secret-partage-demo-ne-pas-utiliser-en-production-2026-mini-fga
+    expiration-minutes: 60

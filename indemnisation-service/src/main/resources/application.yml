@@ -1,0 +1,63 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: indemnisation-service
+
+  datasource:
+    # Chaque microservice a SA PROPRE base (règle d'or des microservices :
+    # jamais de base partagée entre services). C'est pour ça que le port
+    # est différent de celui de sinistre-service (5433).
+    url: jdbc:postgresql://localhost:5434/indemnisation_db
+    username: indemnisation_user
+    password: indemnisation_pwd
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  kafka:
+    # Même broker Kafka que sinistre-service (c'est le même conteneur
+    # Docker sinistre-kafka, sur le port 9092 - un seul Kafka pour tout
+    # le mini-projet, comme dans une vraie architecture microservices).
+    bootstrap-servers: localhost:9092
+    consumer:
+      # Le "group-id" identifie CE microservice comme un groupe de lecture
+      # à part. Si demain on lance plusieurs instances d'indemnisation-service
+      # (pour la charge), elles partageront ce même group-id et se répartiront
+      # le travail, sans traiter deux fois le même message.
+      group-id: indemnisation-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        # Par sécurité, Spring Kafka refuse de désérialiser en JSON des classes
+        # venant de packages inconnus (pour éviter d'exécuter du code malveillant
+        # envoyé par un producer non fiable). On doit explicitement autoriser
+        # nos propres packages.
+        spring.json.trusted.packages: com.fga.indemnisation.domain.event
+        # Le producer (sinistre-service) envoie le nom complet de SA classe
+        # (com.fga.sinistre.domain.event.DossierCreeEvent) dans un en-tête.
+        # On ignore volontairement cette info et on force la désérialisation
+        # vers NOTRE propre classe - la preuve concrète que les deux services
+        # ne partagent aucun code Java, seulement une structure JSON.
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.fga.indemnisation.domain.event.DossierCreeEvent
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+fga:
+  kafka:
+    topic-dossier-cree: dossier-cree
+    topic-indemnisation-validee: indemnisation-validee
+  jwt:
+    # Doit être EXACTEMENT le même secret que sinistre-service (c'est lui
+    # qui émet les tokens via /api/auth/login) - ce service se contente de
+    # les vérifier, sans jamais appeler sinistre-service.
+    secret: fga-secret-partage-demo-ne-pas-utiliser-en-production-2026-mini-fga

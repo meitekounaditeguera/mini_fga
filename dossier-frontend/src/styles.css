@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --couleur-primaire: #16a34a;
+  --couleur-primaire-fonce: #15803d;
+  --couleur-primaire-claire: #dcfce7;
+
+  /* Couleurs ivoiriennes (drapeau orange/blanc/vert, comme FGA) - utilisées
+     en accent (ruban de marque) et pour le sens "attention/en attente",
+     déjà cohérent avec les badges de synchronisation existants. */
+  --couleur-accent: #f77f00;
+  --couleur-accent-fonce: #ea6a00;
+  --couleur-accent-claire: #fed7aa;
+
+  --couleur-fond: #f4f6fb;
+  --couleur-surface: #ffffff;
+  --couleur-bordure: #e2e8f0;
+  --couleur-texte: #0f172a;
+  --couleur-texte-attenue: #64748b;
+
+  --couleur-succes-texte: #065f46;
+  --couleur-succes-fond: #d1fae5;
+  --couleur-attention-texte: #92400e;
+  --couleur-attention-fond: #fef3c7;
+  --couleur-danger: #dc2626;
+  --couleur-danger-fond: #fef2f2;
+
+  --ombre-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --ombre-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --ombre-lg: 0 20px 45px rgba(15, 23, 42, 0.12);
+  --rayon-sm: 8px;
+  --rayon-md: 12px;
+  --rayon-lg: 18px;
+}
+
+/* Petit ruban tricolore (orange / blanc / vert) - clin d'œil discret au
+   drapeau ivoirien, utilisé en accent de marque (en-tête, carte de
+   connexion) sans reskinner toute l'appli en orange. */
+.ruban-drapeau {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--couleur-accent) 0%,
+    var(--couleur-accent) 33.33%,
+    #ffffff 33.33%,
+    #ffffff 66.66%,
+    var(--couleur-primaire) 66.66%,
+    var(--couleur-primaire) 100%
+  );
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--couleur-fond);
+  color: var(--couleur-texte);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+input, button {
+  font-family: inherit;
+}

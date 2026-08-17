@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: indemnisation-postgres
+    environment:
+      POSTGRES_DB: indemnisation_db
+      POSTGRES_USER: indemnisation_user
+      POSTGRES_PASSWORD: indemnisation_pwd
+    ports:
+      # 5434 : différent de 5432 (ton Postgres natif) et 5433 (sinistre-service)
+      - "5434:5432"
+    volumes:
+      - indemnisation_pgdata:/var/lib/postgresql/data
+
+volumes:
+  indemnisation_pgdata:

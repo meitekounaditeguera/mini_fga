@@ -1,0 +1,9 @@
+<div class="page-dossiers">
+  <!-- (dossierCree) : on "écoute" ici l'événement émis par
+       DossierFormComponent (défini via @Output() dans son .ts).
+       Quand il se déclenche, Angular appelle onDossierCree() sur CE
+       composant. -->
+  <app-dossier-form (dossierCree)="onDossierCree()"></app-dossier-form>
+
+  <app-dossier-list></app-dossier-list>
+</div>

@@ -1,0 +1,94 @@
+<div class="dossier-list">
+  <h2>Dossiers de sinistre</h2>
+
+  <!-- *ngIf : affiche ce bloc SEULEMENT si la condition est vraie.
+       L'astérisque (*) est une syntaxe Angular spéciale pour les
+       directives "structurelles" (qui ajoutent/retirent des éléments
+       du DOM, pas juste les cacher visuellement). -->
+  <p *ngIf="chargementEnCours">Chargement en cours...</p>
+
+  <app-banniere type="erreur" [message]="messageErreur"></app-banniere>
+
+  <table *ngIf="!chargementEnCours && !messageErreur">
+    <thead>
+      <tr>
+        <th>Numéro</th>
+        <th>Victime</th>
+        <th>Lieu</th>
+        <th>Statut dossier</th>
+        <th>Indemnisation</th>
+        <th>Recouvrement</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- *ngFor : la boucle Angular, équivalent d'un for-each Java.
+           "let dossier of dossiers" veut dire : répète cette ligne <tr>
+           pour chaque élément du tableau "dossiers". -->
+     <tr *ngFor="let dossier of dossiers">
+        <td>{{ dossier.numero }}</td>
+        <td>{{ dossier.nomVictime }}</td>
+        <td>{{ dossier.lieu }}</td>
+        <td>
+          <span class="badge" [ngClass]="dossier.statut === 'CLOTURE' ? 'badge-validee' : 'badge-attente'">
+            {{ dossier.statut }}
+          </span>
+        </td>
+
+        <!-- Colonne Indemnisation : 3 états possibles -->
+        <td>
+          <!-- État 1 : pas encore reçu par Kafka -->
+          <span *ngIf="!indemnisationDe(dossier)" class="badge badge-attente">
+            Synchronisation...
+          </span>
+
+          <!-- État 2 : EN_ATTENTE -> formulaire de validation -->
+          <div *ngIf="indemnisationDe(dossier)?.statut === 'EN_ATTENTE'" class="validation-inline">
+            <input
+              type="number"
+              placeholder="Montant"
+              [ngModel]="montantSaisiDe(dossier.id)"
+              (ngModelChange)="onMontantChange(dossier.id, $event)"
+              [disabled]="estEnValidation(dossier.id)"
+            />
+            <button
+              (click)="valider(dossier)"
+              [disabled]="estEnValidation(dossier.id)"
+            >
+              {{ estEnValidation(dossier.id) ? '...' : 'Valider' }}
+            </button>
+            <p *ngIf="erreurValidationDe(dossier.id)" class="erreur-inline">
+              {{ erreurValidationDe(dossier.id) }}
+            </p>
+          </div>
+
+          <!-- État 3 : VALIDEE -> affichage simple -->
+          <span *ngIf="indemnisationDe(dossier)?.statut === 'VALIDEE'" class="badge badge-validee">
+            Validée ({{ indemnisationDe(dossier)?.montant }} FCFA)
+          </span>
+        </td>
+
+        <!-- Colonne Recouvrement : dépend de l'indemnisation validée -->
+        <td>
+          <!-- ng-container permet de grouper plusieurs éléments sans ajouter de balise HTML supplémentaire dans le DOM. -->
+          <ng-container *ngIf="indemnisationDe(dossier)?.statut === 'VALIDEE'">
+            <span *ngIf="recouvrementDe(indemnisationDe(dossier)!); else enAttenteRecouvrement"
+                  class="badge badge-validee">
+              {{ recouvrementDe(indemnisationDe(dossier)!)?.contribution_recouvree }} FCFA
+            </span>
+            <!-- ng-template est une balise spéciale Angular qui permet de définir un bloc de code HTML qui ne sera pas rendu immédiatement,
+            mais seulement lorsqu'il est référencé par un *ngIf ou un autre mécanisme. -->
+            <ng-template #enAttenteRecouvrement>
+              <span class="badge badge-attente">Synchronisation...</span>
+            </ng-template>
+          </ng-container>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <p *ngIf="!chargementEnCours && !messageErreur && dossiers.length === 0">
+    Aucun dossier pour l'instant.
+  </p>
+</div>

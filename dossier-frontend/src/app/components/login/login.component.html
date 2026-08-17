@@ -1,0 +1,49 @@
+<div class="ecran-login">
+  <div class="carte-login">
+    <div class="ruban-drapeau"></div>
+    <div class="contenu-carte">
+    <div class="entete-login">
+      <div class="logo-login">FGA</div>
+      <h1>Connexion</h1>
+      <p class="sous-titre">Gestion des dossiers de sinistre</p>
+    </div>
+
+    <form (ngSubmit)="soumettre()" class="formulaire-login">
+      <div class="champ">
+        <label for="utilisateur">Identifiant</label>
+        <input
+          id="utilisateur"
+          type="text"
+          [(ngModel)]="utilisateur"
+          name="utilisateur"
+          placeholder="admin"
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <div class="champ">
+        <label for="motDePasse">Mot de passe</label>
+        <input
+          id="motDePasse"
+          type="password"
+          [(ngModel)]="motDePasse"
+          name="motDePasse"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <app-banniere type="erreur" [message]="messageErreur"></app-banniere>
+
+      <button type="submit" class="bouton-primaire" [disabled]="connexionEnCours">
+        <span *ngIf="connexionEnCours" class="spinner"></span>
+        {{ connexionEnCours ? 'Connexion...' : 'Se connecter' }}
+      </button>
+    </form>
+
+    <p class="aide-demo">Démo : admin / admin123</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+### Valider une indemnisation
+PUT http://localhost:8082/api/indemnisations/59183aef-42e1-40f8-879a-1739404211da/valider
+Content-Type: application/json
+
+{
+  "montant": 500000
+}
+
+### Valider une indemnisation
+PUT http://localhost:8082/api/indemnisations/74f1976e-8ac2-4c42-bb00-7b8de84aa915/valider
+Content-Type: application/json
+
+{
+  "montant": 700000
+}
+
+### Valider une indemnisation
+PUT http://localhost:8082/api/indemnisations/50418730-c748-4158-9ebb-f0a359778957/valider
+Content-Type: application/json
+
+{
+  "montant": 600000
+}
+
+### Valider une indemnisation
+PUT http://localhost:8082/api/indemnisations/ 5c1e7f3c-cc40-490c-98ad-6fb3f8182536/valider
+Content-Type: application/json
+
+{
+  "montant": 1000000
+}
+
+### Valider une indemnisation
+PUT http://localhost:8082/api/indemnisations/ 7999a2a3-5d05-42ef-b2fd-036c6693a87f/valider
+Content-Type: application/json
+
+{
+  "montant": 800000
+}
+
+### Valider une indemnisation
+PUT http://localhost:8082/api/indemnisations/ 63694f64-35e1-4ac5-a156-858f1f6a46c4/valider
+Content-Type: application/json
+
+{
+  "montant": 900000
+}
+
+### Valider une indemnisation
+PUT http://localhost:8082/api/indemnisations/06f71ef8-e632-4f1a-bf2e-4a4229e2f0db/valider
+Content-Type: application/json
+
+{
+  "montant": 1500000
+}

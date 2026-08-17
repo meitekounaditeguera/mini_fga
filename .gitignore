@@ -1,0 +1,23 @@
+# Java / Maven
+target/
+*.class
+
+# Node / Angular
+node_modules/
+.angular/
+dist/
+npm-debug.log*
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.db
+
+# IDE / OS / outillage local
+.vscode/
+.idea/
+.claude/
+*.iml
+.DS_Store
+Thumbs.db

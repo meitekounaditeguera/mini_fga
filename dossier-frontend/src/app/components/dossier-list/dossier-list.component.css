@@ -1,0 +1,112 @@
+.dossier-list {
+  background: var(--couleur-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon-lg);
+  box-shadow: var(--ombre-md);
+  padding: 1.75rem 2rem 2rem;
+}
+
+.dossier-list h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--couleur-texte);
+  margin-bottom: 1.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 0.6rem 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--couleur-texte-attenue);
+  border-bottom: 1px solid var(--couleur-bordure);
+}
+
+td {
+  text-align: left;
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid var(--couleur-bordure);
+  vertical-align: top;
+  font-size: 0.9rem;
+  color: var(--couleur-texte);
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+.validation-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 160px;
+}
+
+.validation-inline input {
+  padding: 0.4rem 0.55rem;
+  width: 100px;
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon-sm);
+  font-size: 0.85rem;
+  background: #f8fafc;
+}
+
+.validation-inline input:focus {
+  outline: none;
+  border-color: var(--couleur-primaire);
+  background: white;
+  box-shadow: 0 0 0 3px var(--couleur-primaire-claire);
+}
+
+.validation-inline button {
+  padding: 0.4rem 0.7rem;
+  background: linear-gradient(135deg, var(--couleur-primaire), var(--couleur-primaire-fonce));
+  color: white;
+  border: none;
+  border-radius: var(--rayon-sm);
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.validation-inline button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--ombre-sm);
+}
+
+.validation-inline button:disabled {
+  background: #86efac;
+  cursor: not-allowed;
+}
+
+.erreur-inline {
+  color: var(--couleur-danger);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.badge-attente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-validee {
+  background: #d1fae5;
+  color: #065f46;
+}

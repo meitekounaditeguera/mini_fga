@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"name": "1 - sinistre-service",
+			"path": "c:/sinistre-service"
+		},
+		{
+			"name": "2 - indemnisation-service",
+			"path": "c:/indemnisation-service"
+		},
+		{
+			"name": "3 - recouvrement-service",
+			"path": "c:/recouvrement-service"
+		},
+		{
+			"name": "4 - production-service",
+			"path": "c:/production-service"
+		},
+		{
+			"name": "5 - erp-adaptation-service",
+			"path": "c:/erp-adaptation-service"
+		},
+		{
+			"name": "6 - dossier-frontend",
+			"path": "c:/dossier-frontend"
+		},
+		{
+			"name": "7 - fga-backoffice",
+			"path": "c:/Projets/fga-backoffice"
+		}
+	],
+	"settings": {}
+}

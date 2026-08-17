@@ -1,0 +1,33 @@
+.banniere {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--rayon-sm);
+  border-left: 3px solid transparent;
+  font-size: 0.87rem;
+  line-height: 1.4;
+}
+
+.banniere-icone {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.banniere-succes {
+  background: var(--couleur-succes-fond);
+  color: var(--couleur-succes-texte);
+  border-left-color: var(--couleur-primaire);
+}
+
+.banniere-attention {
+  background: var(--couleur-attention-fond);
+  color: var(--couleur-attention-texte);
+  border-left-color: var(--couleur-accent);
+}
+
+.banniere-erreur {
+  background: var(--couleur-danger-fond);
+  color: var(--couleur-danger);
+  border-left-color: var(--couleur-danger);
+}
