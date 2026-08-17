@@ -65,6 +65,42 @@ partagé, sans jamais s'appeler entre eux. `production-service` et
 authentification ni au front-end : ce sont des microservices backend
 purs, consommés uniquement via Kafka et leur propre API REST.
 
+### Flux d'événements (bout en bout)
+
+```mermaid
+sequenceDiagram
+    participant F as dossier-frontend
+    participant S as sinistre-service
+    participant K as Kafka
+    participant I as indemnisation-service
+    participant R as recouvrement-service
+    participant E as erp-adaptation-service
+    participant P as production-service
+
+    F->>S: POST /api/dossiers
+    S->>K: publie dossier-cree
+    K-->>I: consomme dossier-cree
+    I->>I: crée l'indemnisation (EN_ATTENTE)
+    K-->>E: consomme dossier-cree
+    E->>E: écriture DOSSIER_OUVERT
+
+    F->>I: PUT /api/indemnisations/{id}/valider
+    I->>K: publie indemnisation-validee
+    K-->>R: consomme indemnisation-validee
+    R->>R: calcule la contribution recouvrée (5%)
+    K-->>E: consomme indemnisation-validee
+    E->>E: écriture INDEMNISATION_VERSEE
+
+    Note over P: Une compagnie d'assurance envoie un bordereau de primes
+    P->>K: publie bordereau-recu
+    K-->>E: consomme bordereau-recu
+    E->>E: écriture PRIME_RECUE
+```
+
+À aucun moment un service n'appelle directement un autre service métier :
+tout passe par Kafka, sauf les 2 appels HTTP du front-end vers
+`sinistre-service`/`indemnisation-service` en haut du schéma.
+
 ## Les 6 projets
 
 | Dossier | Rôle | Stack |
