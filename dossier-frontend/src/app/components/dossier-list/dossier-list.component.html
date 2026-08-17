@@ -74,7 +74,7 @@
           <ng-container *ngIf="indemnisationDe(dossier)?.statut === 'VALIDEE'">
             <span *ngIf="recouvrementDe(indemnisationDe(dossier)!); else enAttenteRecouvrement"
                   class="badge badge-validee">
-              {{ recouvrementDe(indemnisationDe(dossier)!)?.contribution_recouvree }} FCFA
+              Recouvré ({{ recouvrementDe(indemnisationDe(dossier)!)?.contribution_recouvree }} FCFA)
             </span>
             <!-- ng-template est une balise spéciale Angular qui permet de définir un bloc de code HTML qui ne sera pas rendu immédiatement,
             mais seulement lorsqu'il est référencé par un *ngIf ou un autre mécanisme. -->
