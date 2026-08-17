@@ -122,26 +122,19 @@ interne et les instructions pour le lancer isolément.
 - Deux flux métier indépendants (sinistres et primes) réconciliés dans une
   synthèse financière commune, sans couplage direct entre eux
 
-## Marge d'évolution (pas encore fait)
+## Marge d'évolution
 
-Ce projet est un travail en cours, pas un produit fini. Ce qui n'est
-**pas** encore implémenté aujourd'hui :
+Ce projet est un travail en cours, pas un produit fini. Prochaines étapes
+envisagées :
 
-- **Pas de Quarkus.** Les 4 services Java (`sinistre-service`,
-  `indemnisation-service`, `production-service`, `erp-adaptation-service`)
-  sont tous bâtis sur Spring Boot (`spring-boot-starter-parent` 3.3.4) -
-  aucun n'utilise Quarkus.
-- **Pas d'orchestration Camunda.** Seule chose évoquée (dans le README de
-  `sinistre-service`, section "prochains sprints") comme piste possible
-  pour orchestrer le workflow d'un dossier - aucun code, aucune dépendance
-  Camunda n'existe dans aucun des 6 projets à ce jour.
-- **`production-service` et `erp-adaptation-service` ne sont pas encore
-  reliés au front-end Angular.** Ils tournent et s'testent aujourd'hui
-  uniquement via leur API REST (curl / `.http`) - il resterait à ajouter
-  des écrans dédiés (réception de bordereaux, tableau de synthèse
-  financière) dans `dossier-frontend` pour les rendre utilisables comme
-  la chaîne sinistre.
-- **Pas de vraie base utilisateurs.** L'authentification repose sur un
-  compte de démonstration codé en dur (voir `dossier-frontend/README.md`).
-- **Pas de modification ni de suppression** de dossier, de bordereau ou
-  d'écriture comptable - uniquement consultation et création.
+- **Relier `production-service` et `erp-adaptation-service` au front-end
+  Angular.** Ils tournent et se testent aujourd'hui uniquement via leur
+  API REST (curl / `.http`) - il resterait à ajouter des écrans dédiés
+  (réception de bordereaux, tableau de synthèse financière) dans
+  `dossier-frontend` pour les rendre utilisables comme la chaîne sinistre.
+- **Remplacer le compte de démonstration par une vraie base
+  utilisateurs.** L'authentification repose aujourd'hui sur des
+  identifiants codés en dur (voir `dossier-frontend/README.md`).
+- **Ajouter la modification et la suppression** de dossier, de bordereau
+  et d'écriture comptable - le projet ne couvre pour l'instant que la
+  consultation et la création.
