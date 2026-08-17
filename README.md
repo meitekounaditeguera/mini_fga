@@ -17,6 +17,12 @@ Kafka, et une authentification JWT partagée entre plusieurs backends.
 |---|---|
 | ![Erreur d'identifiants](dossier-frontend/docs/captures/02-connexion-erreur.png) | ![Bannière de succès](dossier-frontend/docs/captures/04-creation-succes.png) |
 
+`erp-adaptation-service` n'a pas d'écran dédié (c'est une API pure) - la
+capture ci-dessous est une page de synthèse construite à partir de sa
+vraie réponse `GET /api/synthese`, pour illustrer ce qu'il agrège :
+
+![Synthèse financière ERP](dossier-frontend/docs/captures/05-synthese-erp.png)
+
 ## Architecture
 
 Deux chaînes métier indépendantes, réconciliées par un agrégateur financier :
