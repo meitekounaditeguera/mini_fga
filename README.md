@@ -121,3 +121,23 @@ interne et les instructions pour le lancer isolément.
   exposant chacun le même contrat de sécurité
 - Deux flux métier indépendants (sinistres et primes) réconciliés dans une
   synthèse financière commune, sans couplage direct entre eux
+
+## Marge d'évolution (pas encore fait)
+
+Ce projet est un travail en cours, pas un produit fini. Ce qui n'est
+**pas** encore implémenté aujourd'hui :
+
+- **Pas d'orchestration Camunda.** Seule chose évoquée (dans le README de
+  `sinistre-service`, section "prochains sprints") comme piste possible
+  pour orchestrer le workflow d'un dossier - aucun code, aucune dépendance
+  Camunda n'existe dans aucun des 6 projets à ce jour.
+- **`production-service` et `erp-adaptation-service` ne sont pas encore
+  reliés au front-end Angular.** Ils tournent et s'testent aujourd'hui
+  uniquement via leur API REST (curl / `.http`) - il resterait à ajouter
+  des écrans dédiés (réception de bordereaux, tableau de synthèse
+  financière) dans `dossier-frontend` pour les rendre utilisables comme
+  la chaîne sinistre.
+- **Pas de vraie base utilisateurs.** L'authentification repose sur un
+  compte de démonstration codé en dur (voir `dossier-frontend/README.md`).
+- **Pas de modification ni de suppression** de dossier, de bordereau ou
+  d'écriture comptable - uniquement consultation et création.
