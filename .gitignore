@@ -1,6 +1,8 @@
 # Java / Maven
 target/
 *.class
+hs_err_pid*.log
+replay_pid*.log
 
 # Node / Angular
 node_modules/

@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: production-postgres
+    environment:
+      POSTGRES_DB: production_db
+      POSTGRES_USER: production_user
+      POSTGRES_PASSWORD: production_pwd
+    ports:
+      - "5435:5432"
+    volumes:
+      - production_pgdata:/var/lib/postgresql/data
+
+volumes:
+  production_pgdata:

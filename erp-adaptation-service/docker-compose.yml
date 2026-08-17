@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: erp-postgres
+    environment:
+      POSTGRES_DB: erp_db
+      POSTGRES_USER: erp_user
+      POSTGRES_PASSWORD: erp_pwd
+    ports:
+      - "5436:5432"
+    volumes:
+      - erp_pgdata:/var/lib/postgresql/data
+
+volumes:
+  erp_pgdata:

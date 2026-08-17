@@ -1,0 +1,28 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: erp-adaptation-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5436/erp_db
+    username: erp_user
+    password: erp_pwd
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: erp-adaptation-service
+
+fga:
+  kafka:
+    topic-dossier-cree: dossier-cree
+    topic-indemnisation-validee: indemnisation-validee
+    topic-bordereau-recu: bordereau-recu
+    topic-prime-declaree: prime-declaree

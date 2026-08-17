@@ -1,0 +1,35 @@
+### Validez une production de bordereau
+POST http://localhost:8083/api/bordereaux
+Content-Type: application/json
+
+{
+  "compagnieAssurance": "NSIA Assurances",
+  "montantPrimesCollectees": 5000000
+}
+
+### Validez une production de bordereau
+POST http://localhost:8083/api/bordereaux
+Content-Type: application/json
+
+{
+  "compagnieAssurance": "SUNU Assurances",
+  "montantPrimesCollectees": 4000000
+}
+
+### Validez une production de bordereau
+POST http://localhost:8083/api/bordereaux
+Content-Type: application/json
+
+{
+  "compagnieAssurance": "AMSA Assurances",
+  "montantPrimesCollectees": 3000000
+}
+
+### Validez une production de bordereau
+POST http://localhost:8083/api/bordereaux
+Content-Type: application/json
+
+{
+  "compagnieAssurance": "Atlantic Assurances",
+  "montantPrimesCollectees": 2000000
+}
