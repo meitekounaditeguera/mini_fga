@@ -127,6 +127,10 @@ interne et les instructions pour le lancer isolément.
 Ce projet est un travail en cours, pas un produit fini. Ce qui n'est
 **pas** encore implémenté aujourd'hui :
 
+- **Pas de Quarkus.** Les 4 services Java (`sinistre-service`,
+  `indemnisation-service`, `production-service`, `erp-adaptation-service`)
+  sont tous bâtis sur Spring Boot (`spring-boot-starter-parent` 3.3.4) -
+  aucun n'utilise Quarkus.
 - **Pas d'orchestration Camunda.** Seule chose évoquée (dans le README de
   `sinistre-service`, section "prochains sprints") comme piste possible
   pour orchestrer le workflow d'un dossier - aucun code, aucune dépendance
